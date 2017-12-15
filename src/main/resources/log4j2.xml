@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="task.stefanov.datastax">
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+
+		<RollingFile name="PlainTextAppender" fileName="logs/agent-producer.log"
+			filePattern="logs/agent-producer.%d{yyyy_MM_dd}.log.gz">
+			<PatternLayout pattern="%highlight{%d %-5p [%t]: %m%n%ex}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="logs" maxDepth="1">
+					<IfFileName glob="agent-producer.*.log.gz">
+						<IfLastModified age="7d" />
+					</IfFileName>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<!-- <AsyncLogger name="task.stefanov.datastax" level="INFO" -->
+		<!-- additivity="true"> -->
+		<!-- <AppenderRef ref="PlainTextAppender" /> -->
+		<!-- <AppenderRef ref="Console" /> -->
+		<!-- </AsyncLogger> -->
+
+		<Root level="INFO">
+			<AppenderRef ref="PlainTextAppender" />
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+
+</Configuration>
