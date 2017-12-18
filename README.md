@@ -3,20 +3,18 @@
 ### 1. Overview
 The solution for a centralized log system is described in two parts :
 
-- Design of a scalable solution architecture 
-	Meets the pointed requirements
-- Proof of concept (POC) 
-	Implementation of working agent and service applications
+- **Design of a scalable solution architecture** - Meets the pointed requirements
+- **Proof of concept (POC)** - Implementation of working agent and service applications
 
 ### 2. Design of a scalable solution architecture
 
-![Design](https://raw.githubusercontent.com/yosstef/datastax_agent_producer/master/DatastaxTest.png "Design")
 
 #### 2.1. Short description
    The solution illustrated below uses Kafka as a messaging system (publish-subscribe in this case) and uses the agents as producers and the services as consumers. The log files are tailed and each line is published in a message to a single  Kafka topic. The service subscribes to topics and recreates the log file line by line.
 
 #### 2.2.  Diagram of components :
 
+![Design](https://raw.githubusercontent.com/yosstef/datastax_agent_producer/master/DatastaxTest.png "Design")
 
 #### 2.3. Requirements coverage
 Below are listed the task requirement with description how are they met:
